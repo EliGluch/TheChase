@@ -11,6 +11,13 @@ from matplotlib import pyplot as plt
 from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
 from moviepy.editor import VideoFileClip, concatenate_videoclips
 
+
+# My batch file looks like this:
+# @C:\ProgramData\Anaconda3\python.exe C:\code\Chaser\youtube.py %*
+# @pause
+
+# If I don't specify the anaconda python it won't find the installed libraries. 
+
 minutePic     = r"minute360.png"
 
 # Creates file called test1 consisting of 90 seconds from TheChase
@@ -114,6 +121,13 @@ def process_img(img_rgb, template, count):
     return False
 
 def main(args):
+  os.chdir(r'C:\code\Chaser')
+
+  print('running youtube download the chase')
+
+  if not args:
+    episodeURL = input("Please enter episode youtube URL\n")
+    args = [episodeURL]
 
   for url in args:
     print(url)
