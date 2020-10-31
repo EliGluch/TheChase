@@ -25,7 +25,7 @@ def downloadEpisode(url):
         name = youtube.title
 
         # Search for date in video title, for example 15.09.2019
-        match = re.search(r'\d{2}\.\d{2}\.\d{4}', name)
+        match = re.search(r'\d{1,2}\.\d{2}\.\d{4}', name)
         print(match.group())
 
         # Convert date to be joined by '-' instead of '.'
