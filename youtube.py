@@ -76,8 +76,10 @@ def createVideo(video, times, videoDate):
     video - path to video to edit.
     times - list of integers - points to cut from.
   '''
-  if len(times) is not 6:
-    raise Exception("Error, expected exactly 6 times")
+  if len(times) < 6:
+    raise Exception("Error, at least 6 times")
+
+  times = times[:6]
 
   clips        = []
 
