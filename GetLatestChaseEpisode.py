@@ -1,8 +1,10 @@
+import os
 import sys
 import pytube
 import youtube
 from pytube import YouTube
 from pytube import Playlist
+from contextlib import contextmanager
 
 
 downloaded_episode_file = 'DownloadedChaseEpisodes.txt'
@@ -11,7 +13,8 @@ fifth_season_url = "https://www.youtube.com/playlist?list=PLLttfoK87AdUjGSmMYhtC
 playlist_url = fifth_season_url # Needs to be updated for every new season
 
 def main(*args):
-    get_newest_episode()
+    with cwd('C:\\code\\Chaser'):
+        get_newest_episode()
 
 def get_newest_episode():
     latest_episode_url = get_latest_episode_url()
@@ -49,6 +52,15 @@ def is_allready_downloaded(url):
         f.truncate()
 
     return allready_downloaded
+
+@contextmanager
+def cwd(path):
+    oldpwd=os.getcwd()
+    os.chdir(path)
+    try:
+        yield
+    finally:
+        os.chdir(oldpwd)
 
 if __name__ == "__main__":
    main(sys.argv[1:])
